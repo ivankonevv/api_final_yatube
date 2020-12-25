@@ -1,8 +1,6 @@
-from django.shortcuts import get_object_or_404
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, permissions, viewsets
+from rest_framework import filters, generics, permissions, viewsets
+from rest_framework.generics import get_object_or_404
 
-from .filters import PostFilter
 from .models import Follow, Group, Post
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
@@ -14,15 +12,14 @@ class PostViewSet(viewsets.ModelViewSet):
                           IsOwnerOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    filter_backends = (DjangoFilterBackend,)
-    filterset_class = PostFilter
+    filterset_fields = ['group']
 
     def perform_create(self, serializer):
         return serializer.save(author=self.request.user)
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentSerializer
 
     def perform_create(self, serializer):
@@ -37,12 +34,11 @@ class CommentViewSet(viewsets.ModelViewSet):
         return post.comments.all()
 
 
-class FollowViewSet(viewsets.ModelViewSet):
+class FollowViewSet(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = FollowSerializer
-    queryset = Follow.objects.all()
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    search_fields = ['user__username']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user__username', 'following__username']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

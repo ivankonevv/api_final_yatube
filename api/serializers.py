@@ -5,7 +5,10 @@ from .models import Comment, Follow, Group, Post, User
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='author.username')
+    author = serializers.SlugRelatedField(
+        slug_field='username',
+        read_only=True
+    )
 
     class Meta:
         fields = '__all__'
@@ -16,7 +19,7 @@ class CommentSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
 
     class Meta:
-        fields = ('id', 'author', 'post', 'text', 'created')
+        fields = '__all__'
         model = Comment
 
 
@@ -32,12 +35,14 @@ class FollowSerializer(serializers.ModelSerializer):
     )
 
     def validate_following(self, following):
-        if following is None:
-            raise serializers.ValidationError('Request missing a field '
-                                              '"following"')
-        if self.context.get('request').user == following:
-            raise serializers.ValidationError('You cant subscribe to yourself')
-        return following
+        if self.context.get('request').method == 'POST':
+            if following is None:
+                raise serializers.ValidationError('Request missing a field '
+                                                  '"following"')
+            if self.context.get('request').user == following:
+                raise serializers.ValidationError('You cant subscribe to '
+                                                  'yourself')
+            return following
 
     class Meta:
         fields = '__all__'
