@@ -6,16 +6,22 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,
 
 token_url = [
     path(
-        'token/',
+        '',
         TokenObtainPairView.as_view(),
         name='token_obtain_pair',
+    ),
+    path(
+        'refresh/',
+        TokenRefreshView.as_view(),
+        name='token_refresh',
     ),
 ]
 
 urlpatterns = [
     path(
-        '',
+        'token/',
         include(token_url),
+        name='token'
     ),
     path(
         'admin/',
@@ -30,10 +36,5 @@ urlpatterns = [
         TemplateView.as_view(template_name='redoc.html'),
         name='redoc'
     ),
-    path(
-        'refresh/',
-        include(token_url),
-        TokenRefreshView.as_view(),
-        name='token_refresh',
-    ),
+
 ]
