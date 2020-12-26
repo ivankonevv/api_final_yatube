@@ -43,6 +43,7 @@ class FollowSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('You cant subscribe to '
                                                   'yourself')
             return following
+        return following
 
     class Meta:
         fields = '__all__'

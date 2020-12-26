@@ -1,4 +1,4 @@
-from rest_framework import filters, generics, permissions, viewsets
+from rest_framework import filters, mixins, permissions, viewsets
 from rest_framework.generics import get_object_or_404
 
 from .models import Follow, Group, Post
@@ -8,8 +8,10 @@ from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly,
+    ]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
     filterset_fields = ['group']
@@ -19,7 +21,10 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly,
+    ]
     serializer_class = CommentSerializer
 
     def perform_create(self, serializer):
@@ -34,11 +39,13 @@ class CommentViewSet(viewsets.ModelViewSet):
         return post.comments.all()
 
 
-class FollowViewSet(generics.ListCreateAPIView):
+class FollowViewSet(mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    viewsets.GenericViewSet):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = FollowSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['user__username', 'following__username']
+    search_fields = ['=user__username', '=following__username']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -47,7 +54,8 @@ class FollowViewSet(generics.ListCreateAPIView):
         return Follow.objects.filter(following=self.request.user)
 
 
-class GroupViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+class GroupViewSet(mixins.ListModelMixin,
+                   mixins.CreateModelMixin,
+                   viewsets.GenericViewSet):
     serializer_class = GroupSerializer
     queryset = Group.objects.all()
