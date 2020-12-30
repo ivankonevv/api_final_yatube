@@ -8,6 +8,9 @@ from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    """
+    View function of single or list of posts.
+    """
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
         IsOwnerOrReadOnly,
@@ -21,6 +24,9 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
+    """
+    Comment view function.
+    """
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
         IsOwnerOrReadOnly,
@@ -39,9 +45,15 @@ class CommentViewSet(viewsets.ModelViewSet):
         return post.comments.all()
 
 
-class FollowViewSet(mixins.ListModelMixin,
-                    mixins.CreateModelMixin,
-                    viewsets.GenericViewSet):
+class FollowViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet,
+):
+    """
+    View function of following users, may be searched by username
+    and following username.
+    """
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = FollowSerializer
     filter_backends = [filters.SearchFilter]
@@ -54,8 +66,13 @@ class FollowViewSet(mixins.ListModelMixin,
         return Follow.objects.filter(following=self.request.user)
 
 
-class GroupViewSet(mixins.ListModelMixin,
-                   mixins.CreateModelMixin,
-                   viewsets.GenericViewSet):
+class GroupViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet,
+):
+    """
+    View function of single group or list of groups.
+    """
     serializer_class = GroupSerializer
     queryset = Group.objects.all()

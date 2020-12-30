@@ -5,6 +5,9 @@ from .models import Comment, Follow, Group, Post, User
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """
+    Post serializer. Mandatory field "author".
+    """
     author = serializers.SlugRelatedField(
         slug_field='username',
         read_only=True
@@ -16,6 +19,9 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    Comment serializer. Mandatory field "author".
+    """
     author = serializers.ReadOnlyField(source='author.username')
 
     class Meta:
@@ -24,6 +30,10 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class FollowSerializer(serializers.ModelSerializer):
+    """
+    Follow serializer. Checks the request method and occurrence of errors.
+    Has unique fields.
+    """
     user = serializers.SlugRelatedField(
         slug_field='username',
         read_only=True,
@@ -42,7 +52,6 @@ class FollowSerializer(serializers.ModelSerializer):
             if self.context.get('request').user == following:
                 raise serializers.ValidationError('You cant subscribe to '
                                                   'yourself')
-            return following
         return following
 
     class Meta:
@@ -57,6 +66,9 @@ class FollowSerializer(serializers.ModelSerializer):
 
 
 class GroupSerializer(serializers.ModelSerializer):
+    """
+    Group serializer.
+    """
 
     class Meta:
         fields = '__all__'
