@@ -2,37 +2,37 @@ openapi: 3.0.2
 info:
   title: 'Yatube API'
   version: ''
-  description: API начинается с /api/v1/
+  description: API starts with /api/v1/
 
 servers:
   - url: /api/v1/
 
 tags:
   - name: POSTS
-    description: Посты
+    description: Posts
   - name: COMMENTS
-    description: Комментарии
+    description: Comments
   - name: AUTH
   - name: FOLLOW
-    description: Подписки
+    description: Subscriptions
   - name: GROUP
-    description: Группы
+    description: Groups
 
 paths:
   /posts/:
     get:
       tags:
         - POSTS
-      description: Получить список всех публикаций
+      description: Get a list of all posts
       parameters:
       - name: group
         in: query
-        description: ID группы
+        description: Group ID
         schema:
           type: number
       responses:
         200:
-          description: Список публикаций
+          description: List of posts
           content:
             application/json:
               schema:
@@ -42,7 +42,7 @@ paths:
     post:
       tags:
         - POSTS
-      description: Создать новую публикацию
+      description: Create a new post
       parameters: []
       requestBody:
         content:
@@ -51,7 +51,7 @@ paths:
               $ref: '#/components/schemas/Post'
       responses:
         200:
-          description: 'Новая публикация'
+          description: 'New post'
           content:
             application/json:
               schema:
@@ -60,23 +60,23 @@ paths:
     get:
       tags:
         - POSTS
-      description: Получить публикацию по id
+      description: Get post by ID
       parameters:
       - name: id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       responses:
         200:
-          description: Публикация
+          description: Post
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Post'
         400:
-          description: Ошибка
+          description: Error
           content:
             application/json:
               schema:
@@ -84,12 +84,12 @@ paths:
     put:
       tags:
         - POSTS
-      description: 'Обновить публикацию по id'
+      description: 'Update post by ID'
       parameters:
       - name: id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       requestBody:
@@ -99,13 +99,13 @@ paths:
               $ref: '#/components/schemas/Post'
       responses:
         200:
-          description: Публикация
+          description: Post
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Post'
         400:
-          description: Ошибка
+          description: Error
           content:
             application/json:
               schema:
@@ -113,12 +113,12 @@ paths:
     patch:
       tags:
         - POSTS
-      description: Частично обновить публикацию по id
+      description: Partially update post by ID
       parameters:
       - name: id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       requestBody:
@@ -128,13 +128,13 @@ paths:
               $ref: '#/components/schemas/Post'
       responses:
         200:
-          description: Публикация
+          description: Post
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Post'
         400:
-          description: Ошибка
+          description: Error
           content:
             application/json:
               schema:
@@ -142,12 +142,12 @@ paths:
     delete:
       tags:
         - POSTS
-      description: Удалить публикацию по id
+      description: Delete post by ID
       parameters:
       - name: id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       responses:
@@ -157,12 +157,12 @@ paths:
     get:
       tags:
         - COMMENTS
-      description: 'Получить список всех комментариев публикации'
+      description: 'Get a list of all post comments'
       parameters:
       - name: post_id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       responses:
@@ -178,12 +178,12 @@ paths:
     post:
       tags:
         - COMMENTS
-      description: 'Создать новый комментарий для публикации'
+      description: 'Create a new comment for a post'
       parameters:
       - name: post_id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       responses:
@@ -196,18 +196,18 @@ paths:
     get:
       tags:
         - COMMENTS
-      description: 'Получить комментарий для публикации по id'
+      description: 'Get a comment for a post by ID'
       parameters:
       - name: post_id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       - name: comment_id
         in: path
         required: true
-        description: ID комментария
+        description: Comment ID
         schema:
           type: number
       responses:
@@ -219,18 +219,18 @@ paths:
     put:
       tags:
         - COMMENTS
-      description: 'Обновить комментарий для публикации по id'
+      description: 'Update comment for post by ID'
       parameters:
       - name: post_id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       - name: comment_id
         in: path
         required: true
-        description: ID комментария
+        description: Comment ID
         schema:
           type: number
       responses:
@@ -242,18 +242,18 @@ paths:
     patch:
       tags:
         - COMMENTS
-      description: 'Частично обновить комментарий для публикации по id'
+      description: 'Partially update comment for post by ID'
       parameters:
       - name: post_id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       - name: comment_id
         in: path
         required: true
-        description: ID комментария
+        description: Comment ID
         schema:
           type: number
       responses:
@@ -265,18 +265,18 @@ paths:
     delete:
       tags:
         - COMMENTS
-      description: 'Удалить комментарий для публикации по id'
+      description: 'Delete comment for post by ID'
       parameters:
       - name: post_id
         in: path
         required: true
-        description: ID публикации
+        description: Post ID
         schema:
           type: number
       - name: comment_id
         in: path
         required: true
-        description: ID комментария
+        description: Comment ID
         schema:
           type: number
       responses:
@@ -286,7 +286,7 @@ paths:
     post:
       tags:
         - AUTH
-      description: Получить JWT-токен
+      description: Get JWT-token
       requestBody:
         content:
           application/json:
@@ -308,7 +308,7 @@ paths:
                 $ref: '#/components/schemas/JWTToken'
           description: ''
         400:
-          description: Ошибка
+          description: Error
           content:
             application/json:
               schema:
@@ -317,7 +317,7 @@ paths:
     post:
       tags:
         - AUTH
-      description: Обновить JWT-токен
+      description: Update JWT-token
       parameters: []
       requestBody:
         content:
@@ -344,16 +344,16 @@ paths:
     get:
       tags:
         - FOLLOW
-      description: Получить список всех подписчиков
+      description: Get a list of all subscribers
       parameters:
       - name: search
         in: query
-        description: username тот кто подписан или на кого подписаны
+        description: username whoever subscribes or is subscribed to
         schema:
           type: string
       responses:
         200:
-          description: Список подписчиков
+          description: Subscribers list
           content:
             application/json:
               schema:
@@ -363,11 +363,11 @@ paths:
     post:
       tags:
         - FOLLOW
-      description: Создать подписку
+      description: Create a subscription
       parameters:
       - name: user
         in: query
-        description: Пользователь для фильтрации по подписчикам
+        description: User to filter by subscribers
         schema:
           type: string
       requestBody:
@@ -381,7 +381,7 @@ paths:
                   type: string
       responses:
         200:
-          description: Подписаться
+          description: Subscribe
           content:
             application/json:
               schema:
@@ -393,11 +393,11 @@ paths:
     get:
       tags:
         - GROUP
-      description: Получить список всех групп
+      description: Get a list of all groups
       parameters: []
       responses:
         200:
-          description: Список групп
+          description: List of groups
           content:
             application/json:
               schema:
@@ -407,7 +407,7 @@ paths:
     post:
       tags:
         - GROUP
-      description: Создать новую группу
+      description: Create a new group
       parameters: []
       requestBody:
         content:
@@ -416,7 +416,7 @@ paths:
               $ref: '#/components/schemas/Group'
       responses:
         200:
-          description: 'Новая группа'
+          description: 'New Group'
           content:
             application/json:
               schema:
@@ -426,30 +426,30 @@ paths:
 components:
   schemas:
     Post:
-      title: Пост
+      title: Post
       type: object
-      description: Детальная информация поста
+      description: Post details
       required:
           - text
       properties:
         id:
           type: integer
-          title: ID  поста
+          title: Post ID
           readOnly: true
         text:
           type: string
-          title: Текст поста
+          title: Post text
         author:
           type: string
-          title: username пользователя
+          title: username of user
           readOnly: true
         pub_date:
           type: string
           format: date-time
-          title: Дата публикации
+          title: Date of publication
           readOnly: true
     ValidationError:
-      title: Ошибка валидации
+      title: Validation error
       type: object
       properties:
         field_name:
@@ -457,52 +457,52 @@ components:
           items:
             type: string
     JWTToken:
-      title: JWT Токен
+      title: JWT Token
       type: object
       properties:
         access:
           type: string
-          title: access токен
+          title: access token
         refresh:
           type: string
-          title: refresh токен
+          title: refresh token
     Comment:
-      title: Комментарий
+      title: Comment
       type: object
-      description: Детальная информация комментария
+      description: Detailed comment information
       required:
           - text
       properties:
         id:
           type: integer
-          title: ID  комментария
+          title: Comment ID
           readOnly: true
         text:
           type: string
-          title: Текст комментария
+          title: Comment text
         author:
           type: string
-          title: username пользователя
+          title: username of user
           readOnly: true
         pub_date:
           type: string
           format: date-time
-          title: Дата публикации комментария
+          title: Comment post date
           readOnly: true
     Follow:
-      title: Подписчики
+      title: Followers
       type: object
       properties:
         user:
           type: string
-          title: username кто подписался
+          title: username who subscribed
         following:
           type: string
-          title: username на кого подписаться
+          title: username to subscribe to
     Group:
-      title: Группы
+      title: Groups
       type: object
       properties:
         title:
           type: string
-          title: На кого подписаться
+          title: Who to subscribe to

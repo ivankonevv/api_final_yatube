@@ -52,7 +52,8 @@ class FollowViewSet(
 ):
     """
     View class of following users, may be searched by username
-    and following username.
+    and following username. Only GET and POST methods
+    available.
     """
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = FollowSerializer
@@ -72,7 +73,8 @@ class GroupViewSet(
     viewsets.GenericViewSet,
 ):
     """
-    View class of single group or list of groups.
+    View class of single group or list of groups. Only GET and POST methods
+    available.
     """
     serializer_class = GroupSerializer
     queryset = Group.objects.all()
