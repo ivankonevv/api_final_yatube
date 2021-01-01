@@ -9,7 +9,7 @@ from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
 
 class PostViewSet(viewsets.ModelViewSet):
     """
-    View function of single or list of posts.
+    View class of single or list of posts.
     """
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
@@ -25,7 +25,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     """
-    Comment view function.
+    Comment view class.
     """
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
@@ -51,7 +51,7 @@ class FollowViewSet(
     viewsets.GenericViewSet,
 ):
     """
-    View function of following users, may be searched by username
+    View class of following users, may be searched by username
     and following username.
     """
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
@@ -72,7 +72,7 @@ class GroupViewSet(
     viewsets.GenericViewSet,
 ):
     """
-    View function of single group or list of groups.
+    View class of single group or list of groups.
     """
     serializer_class = GroupSerializer
     queryset = Group.objects.all()
