@@ -1,19 +1,12 @@
-FROM python:3.8
+FROM python:3.8.3-alpine
 
-COPY requirements.txt .
+WORKDIR /usr/src/
 
-COPY manage.py .
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-WORKDIR / .
-
-COPY / .
-
-RUN python3 manage.py makemigrations
-
-RUN python3 manage.py migrate
-
-ENTRYPOINT ["python"]
-
-CMD ["manage.py", "runserver"]
+COPY . .
