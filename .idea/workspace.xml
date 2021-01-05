@@ -19,7 +19,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b868642-b1d9-4788-93cf-94ccde71e95a" name="Default Changelist" comment="" />
+    <list default="true" id="8b868642-b1d9-4788-93cf-94ccde71e95a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0002_follow_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0003_post_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0004_auto_20201222_0554.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0005_auto_20201222_0555.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0006_auto_20201222_0837.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0007_auto_20201222_0851.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0008_auto_20201222_0854.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/migrations/0009_auto_20210104_1216.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatube_api/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/yatube_api/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +60,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="DockerRegistry" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
@@ -111,9 +127,17 @@
       <screen x="0" y="25" width="1440" height="814" />
     </state>
     <state x="246" y="71" width="1071" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.814@0.25.1440.814" timestamp="1608639486347" />
-    <state x="196" y="60" key="SettingsEditor" timestamp="1609613485163">
+    <state x="408" y="237" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609833629277">
       <screen x="0" y="25" width="1440" height="814" />
     </state>
-    <state x="196" y="60" key="SettingsEditor/0.25.1440.814@0.25.1440.814" timestamp="1609613485163" />
+    <state x="408" y="237" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1440.814@0.25.1440.814" timestamp="1609833629277" />
+    <state x="196" y="60" key="SettingsEditor" timestamp="1609771060293">
+      <screen x="0" y="25" width="1440" height="814" />
+    </state>
+    <state x="196" y="60" key="SettingsEditor/0.25.1440.814@0.25.1440.814" timestamp="1609771060293" />
+    <state x="341" y="163" width="670" height="676" key="search.everywhere.popup" timestamp="1609771051963">
+      <screen x="0" y="25" width="1440" height="814" />
+    </state>
+    <state x="341" y="163" width="670" height="676" key="search.everywhere.popup/0.25.1440.814@0.25.1440.814" timestamp="1609771051963" />
   </component>
 </project>
